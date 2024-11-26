@@ -1,25 +1,21 @@
-import sys
-import pypistats
+import sys, pypistats, datetime, matplotlib, argparse
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
-import datetime
 import pandas as pd
-import matplotlib
-import argparse
-
+\
 def main(package_name, cumulative=False, output_file='chart.svg'):
     # Fetch download statistics using pypistats
-    data = pypistats.overall(package_name,total = True, format = 'pandas')
-    #print(data)
-    data = data.groupby("category").get_group("without_mirrors").sort_values("date")
+    data = pypistats.overall(package_name, total=True, format='pandas')
+    data = data.query("category == 'without_mirrors'").sort_values("date")
     
     # Extract dates and download counts from the DataFrame
     dates = pd.to_datetime(data['date'])
     counts = data['downloads']
 
-    # Calculate the total downloads
+    # Calculate the total downloads and cumulative counts if needed
     total_downloads = counts.sum()
-    counts = counts.cumsum() if cumulative else counts
+    if cumulative:
+        counts = counts.cumsum()
 
     # Enable xkcd style with a standard font
     with plt.xkcd():
