@@ -1,0 +1,25 @@
+name: 'pypi chart'
+
+on:
+  push:
+    branches:
+      - dev
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: pull-request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh_pr_up() { gh pr create "$@" || gh pr edit "$@"; }
+          gh_pr_up --title "${{ github.ref }} to production" --body ":crown: *Automated PR*    \n These are the updates and changes to the development branch to be pushed into production from staging"
