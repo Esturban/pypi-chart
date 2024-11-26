@@ -1,4 +1,4 @@
-name: 'PyPI Download Chart Generator'
+name: 'PyPI Chart Generator'
 branding:
   icon: 'bar-chart-2'
   color: 'white'
