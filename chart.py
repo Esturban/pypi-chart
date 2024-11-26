@@ -39,10 +39,20 @@ def main(package_name, cumulative=False, output_file='chart.svg'):
         # Save the plot as an SVG file with bbox_inches='tight'
         plt.savefig(f'/output/{output_file}.svg', format='svg', bbox_inches='tight')
 
+def str2bool(value):
+    if isinstance(value, bool):
+        return value
+    if value.lower() in ('yes', 'true', 't', 'y', '1'):
+        return True
+    elif value.lower() in ('no', 'false', 'f', 'n', '0'):
+        return False
+    else:
+        raise argparse.ArgumentTypeError('Boolean value expected.')
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate a PyPI download chart.')
     parser.add_argument('package_name', type=str, help='The name of the PyPI package.')
-    parser.add_argument('--cumulative', type=bool, nargs='?', const=True, default=False, help='Generate a cumulative download chart.')
+    parser.add_argument('--cumulative', type=str2bool, nargs='?', const=True, default=False, help='Generate a cumulative download chart.')
     parser.add_argument('--output_file', type=str, default='chart', help='The name of the output SVG file.')
 
     args = parser.parse_args()
