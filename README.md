@@ -1,4 +1,4 @@
-# PyPI Download Chart Generator
+# PyPI Chart
 
 This action generates a download chart for a specified PyPI package and outputs it as an SVG file.
 
@@ -11,14 +11,24 @@ Please refer to the release page for the latest release notes.
 - uses: Esturban/pypi-chart@v1
   with:
     # The name of the PyPI package.
-    package_name: ''
+    package_name: 'numpy'
+    cumulative: 'true'
+    output_file: 'chart.svg'
 ```
+
+### Numpy - Cumulative
+
+Here's an example of how to generate a cumulative download chart for the 'numpy' package: ![](numpy-cumulative.svg)
+
+### Numpy - Non-Cumulative
+
+Here's an example of how to generate a non-cumulative download chart for the 'numpy' package: ![](numpy.svg)  
 
 ## Scenarios  
 
-- Generate and upload PyPI download chart  
-- Generate and commit PyPI download chart to repository  
-- Generate PyPI download chart on a schedule  
+- [Generate and upload PyPI download chart](#generate-and-upload-pypi-download-chart)  
+- [Generate and commit PyPI download chart to repository](#generate-and-commit-pypi-download-chart-to-repository)  
+- [Generate PyPI download chart on a schedule](#generate-pypi-download-chart-on-a-schedule)  
 
 ### Generate and upload PyPI download chart  
 
@@ -68,7 +78,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Generate PyPI Download Chart
-        uses: your-username/pypi-download-chart-action@v1
+        uses: Esturban/pypi-chart@v1
         with:
           package_name: your-package-name
       - name: Commit and Push Changes
@@ -100,7 +110,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: Generate PyPI Download Chart
-        uses: your-username/pypi-chart@v1
+        uses: Esturban/pypi-chart@v1
         with:
           package_name: your-package-name
       - name: Commit and Push Changes

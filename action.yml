@@ -1,4 +1,7 @@
-name: 'PyPI Download Chart Generator'
+name: 'PyPI Chart Generator'
+branding:
+  icon: 'bar-chart-2'
+  color: 'white'
 description: 'Generates a download chart for a PyPI package and outputs it as an SVG file.'
 inputs:
   package_name:
@@ -7,10 +10,15 @@ inputs:
   cumulative:
     description: 'Set to "true" if the chart should be cumulative.'
     required: false
-    default: 'true'
+    default: 'false'
+  output_file:
+    description: 'The name of the output SVG file.'
+    required: false
+    default: 'chart'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
     - ${{ inputs.package_name }}
     - ${{ inputs.cumulative }}
+    - ${{ inputs.output_file }}
