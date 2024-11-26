@@ -1,2 +1,4 @@
 venv
 *.svg
+!numpy.svg
+!numpy-cumulative.svg

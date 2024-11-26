@@ -1,4 +1,4 @@
-# PyPI Download Chart Generator
+# PyPI Chart
 
 This action generates a download chart for a specified PyPI package and outputs it as an SVG file.
 
@@ -11,8 +11,18 @@ Please refer to the release page for the latest release notes.
 - uses: Esturban/pypi-chart@v1
   with:
     # The name of the PyPI package.
-    package_name: ''
+    package_name: 'numpy'
+    cumulative: 'true'
+    output_file: 'chart.svg'
 ```
+
+### Numpy - Cumulative
+
+Here's an example of how to generate a cumulative download chart for the 'numpy' package: ![](numpy-cumulative.svg)
+
+### Numpy - Non-Cumulative
+
+Here's an example of how to generate a non-cumulative download chart for the 'numpy' package: ![](numpy.svg)  
 
 ## Scenarios  
 
