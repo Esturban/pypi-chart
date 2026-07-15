@@ -3,3 +3,15 @@ venv
 !numpy.svg
 !numpy-cumulative.svg
 .codegraph/
+
+# AI tool scaffolding (local-only; never track on this public repo)
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+.wolf/
+.cursorrules
+.clinerules
+.windsurfrules
+.roo*
+memory-bank/
+.github/copilot-instructions.md
